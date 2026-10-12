@@ -2,6 +2,8 @@
 
 [Back to the overview](README.md)
 
+<!-- Generated from releases.json by tools/render_releases_md.py. Do not edit by hand. -->
+
 **Nothing has been released yet.** This page will list the latest version of each Eposyne
 download, with its changelog and the fingerprint (SHA-256) of every file. It is regenerated
 from [`releases.json`](releases.json) each time a release is published.

@@ -1,0 +1,65 @@
+{
+  "format": "eposyne.releases/v1",
+  "line": "0.4",
+  "artifacts": {
+    "unity": {
+      "version": "0.4.0",
+      "released_at": "2026-11-02T10:00:00Z",
+      "contract_revision": "6808d9371701c0bb905bc5691eb85a102033bd1a703edf0b0d83d0486bf7b076",
+      "notes_url": "https://github.com/Eposyne/how-it-works/releases/tag/unity-0.4.0",
+      "unity_versions": ["6000.3"],
+      "files": [
+        {
+          "name": "eposyne-unity-0.4.0.unitypackage",
+          "kind": "unitypackage",
+          "url": "https://github.com/Eposyne/how-it-works/releases/download/unity-0.4.0/eposyne-unity-0.4.0.unitypackage",
+          "sha256": "1f0e3dad99908345f7439f8ffabdffc4c1d1a1d2b6f9c7e6d5c4b3a291807f6e",
+          "size_bytes": 2418176
+        }
+      ]
+    },
+    "unreal": {
+      "version": "0.4.0",
+      "released_at": "2026-11-02T10:00:00Z",
+      "contract_revision": "6808d9371701c0bb905bc5691eb85a102033bd1a703edf0b0d83d0486bf7b076",
+      "notes_url": "https://github.com/Eposyne/how-it-works/releases/tag/unreal-0.4.0",
+      "files": [
+        {
+          "name": "eposyne-unreal-0.4.0-ue5.8-win64.zip",
+          "kind": "prebuilt",
+          "engine": "5.8",
+          "os": "windows",
+          "arch": "x64",
+          "url": "https://github.com/Eposyne/how-it-works/releases/download/unreal-0.4.0/eposyne-unreal-0.4.0-ue5.8-win64.zip",
+          "sha256": "9b74c9897bac770ffc029102a200c5de2e1f0a2b3c4d5e6f708192a3b4c5d6e7",
+          "size_bytes": 18350080
+        },
+        {
+          "name": "eposyne-unreal-0.4.0-source.zip",
+          "kind": "source",
+          "url": "https://github.com/Eposyne/how-it-works/releases/download/unreal-0.4.0/eposyne-unreal-0.4.0-source.zip",
+          "sha256": "3c59dc048e8850243be8079a5c74d079a1b2c3d4e5f60718293a4b5c6d7e8f90",
+          "size_bytes": 1048576
+        }
+      ]
+    },
+    "director": {
+      "version": "0.4.0",
+      "released_at": "2026-11-02T10:00:00Z",
+      "contract_revision": "6808d9371701c0bb905bc5691eb85a102033bd1a703edf0b0d83d0486bf7b076",
+      "notes_url": "https://github.com/Eposyne/how-it-works/releases/tag/director-0.4.0",
+      "files": [
+        {
+          "name": "eposyne-director-0.4.0-windows-x64.zip",
+          "kind": "executable",
+          "os": "windows",
+          "arch": "x64",
+          "url": "https://github.com/Eposyne/how-it-works/releases/download/director-0.4.0/eposyne-director-0.4.0-windows-x64.zip",
+          "sha256": "adb60241198ebf143aac645b40ad7d7cccc39104bc63ddaca2225e9c4951544a",
+          "size_bytes": 36913643
+        }
+      ]
+    }
+  },
+  "previous": []
+}
