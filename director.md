@@ -65,17 +65,30 @@ flowchart LR
 ### Signing in and limits
 
 - **Account.** Developers sign in with their Eposyne account through the browser, from the
-  engine plugin or from Director's web console. Studios can also use a studio key.
+  engine plugin or from Director's web console.
+- **API keys.** For everything else, such as a game server, a build script, or an engine
+  without a plugin, an account holder creates a Director API key on their Eposyne account,
+  on every plan. A key is shown once and can be revoked at any time. It belongs on a server
+  or a developer machine, never in a game build players download or in a web page.
+- **Studio keys.** Studios can also use a studio key issued by Eposyne.
+- **Paying for decisions.** Each hosted decision is paid from the account's usage credits,
+  which you buy on your Eposyne account. A new account can earn a welcome credit to try
+  Director. A monthly limit on the credits caps what the account spends, and a decision is
+  refused, never run unpaid, when the balance runs low.
 - **Isolation.** Each account or studio has its own data and its own limits.
-- **Spending limits.** Usage is metered, and every account has a spending limit.
 - **Models.** You pick from the models the hosted Director offers. Bringing your own model,
   or a local model, is not available.
 
-### Engines
+### Engines and servers
 
 - **Unity and Unreal** connect through the Eposyne plugins (see
   [the engine plugins](engine-plugins.md)).
-- **Any other engine** can call Director's HTTP interface directly. There is no Godot plugin.
+- **Anything else that can send an HTTPS request**, such as another engine, a game server,
+  or a script, calls Director's HTTP interface directly with an API key. There is no Godot
+  plugin. Browsers cannot call it directly: a web game calls it from its own backend.
+
+The interface itself (requests, responses, errors, and limits) is documented in the
+[Director developer documentation](https://director.eposyne.com/docs/).
 
 ### The console
 
