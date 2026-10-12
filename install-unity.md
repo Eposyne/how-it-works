@@ -17,6 +17,10 @@ the file.
 Unity 6 (6000.x). Each release names the exact versions it was checked on. Older Unity
 versions are not supported.
 
+The plugin needs two Unity packages that the Unity 6 project templates already include: the
+Input System (`com.unity.inputsystem`) and Unity UI (`com.unity.ugui`). If you start from an
+empty project, add both in the Package Manager before importing.
+
 ## Install
 
 1. Open your project in Unity 6.
