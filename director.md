@@ -102,23 +102,28 @@ decision and read the result in plain words.
 - It does not check types beyond allowed values and ranges.
 - It does not read Architect worlds. Architect content reaches the game through the plugin's
   import, and the game sends Director what a decision needs.
-- It does not remember on its own. Today the game passes what happened as part of the state
-  it sends.
+- Without the memory module it does not remember on its own: the game passes what happened
+  as part of the state it sends.
+
+### Story arcs and memory
+
+Two optional modules, which each account switches on for itself next to its API keys:
+
+- **Story arcs.** Follows what happens in the game and gives Director a sense of where the
+  story is going: arcs you authored, and arcs it starts when events fit, including events
+  that start without the player asking.
+- **Memory.** Lets characters remember what they saw and heard, and what others told them,
+  across scenes and sessions. The game can read what a character believes.
+
+Both follow the **event stream**: the game reports what happens as it happens, and Director
+only observes it, never treating an event as an instruction. Every AI call these modules make
+is paid from usage credits like a decision. Storing events, arcs, and memories is not charged
+but has limits per account, and a world the game no longer needs can be deleted.
 
 ## In development
 
 - **On-device.** A native SDK that runs Director on the player's device: no network calls
   during play, no player data leaving the game, and no per-token cloud bill at play time.
   Not yet available.
-- **Story arcs.** An optional module for plot progression: it follows what happens in the
-  game and gives Director a sense of where the story is going, including events that start
-  without the player asking.
-- **NPC memory.** An optional module that lets characters remember what they saw and heard,
-  across scenes and sessions.
-- **The event stream.** The game reports what happens as it happens, so the story-arc and
-  memory modules can follow along.
 - **Runtime creation.** Creating new characters, factions, or quests while the game runs.
 - **Shipped games.** A way for a released game, and its players, to reach Director.
-
-The story-arc and memory modules already exist in the service, switched off by default; the
-engine plugins do not feed them yet.
