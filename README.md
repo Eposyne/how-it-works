@@ -52,6 +52,15 @@ Each product page has two parts:
 There are no dates in this repository. It explains concepts, not interfaces: there are no
 endpoints, file formats, prompts, or model names here.
 
+## Getting the plugins
+
+Nothing has been released for download yet. When it is, each version is listed on the
+[releases page](releases.md), and these pages say how to install it:
+
+- [Install Eposyne for Unity](install-unity.md)
+- [Install Eposyne for Unreal](install-unreal.md)
+- [Run Director locally](install-director-local.md)
+
 ## More
 
 - Website: [www.eposyne.com](https://www.eposyne.com)

@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://loreweaver.dev/contracts/director/v1/releases-feed.schema.json",
+  "title": "Eposyne release feed (releases.json on Eposyne/how-it-works)",
+  "description": "The single source for the engine plugins' local Director download and for every download link on the front page and in the docs. Written only by the release pipeline. Signed by a detached minisign signature in releases.json.minisig beside it; a plugin verifies the signature with its bundled public key before using any entry.",
+  "type": "object",
+  "required": ["format", "line", "artifacts", "previous"],
+  "additionalProperties": false,
+  "properties": {
+    "format": { "const": "eposyne.releases/v1" },
+    "line": {
+      "description": "The current shared MAJOR.MINOR line, or the empty string before the first release.",
+      "type": "string",
+      "pattern": "^(|[0-9]+\\.[0-9]+)$"
+    },
+    "artifacts": { "$ref": "#/$defs/artifactSet" },
+    "previous": {
+      "description": "Earlier lines that are still listed, newest first, so an older plugin finds its matching Director.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["line", "artifacts"],
+        "additionalProperties": false,
+        "properties": {
+          "line": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+          "artifacts": { "$ref": "#/$defs/artifactSet" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "artifactSet": {
+      "description": "Latest release per artifact on this line. Empty only while the line is empty.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unity": { "$ref": "#/$defs/unityArtifact" },
+        "unreal": { "$ref": "#/$defs/unrealArtifact" },
+        "director": { "$ref": "#/$defs/directorArtifact" }
+      }
+    },
+    "artifactBase": {
+      "type": "object",
+      "required": ["version", "released_at", "contract_revision", "notes_url", "files"],
+      "properties": {
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "released_at": { "type": "string", "format": "date-time" },
+        "contract_revision": {
+          "description": "SHA-256 of contracts/checksums.sha256 of the contract revision the artifact pins.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "notes_url": { "type": "string", "format": "uri", "pattern": "^https://" }
+      }
+    },
+    "fileBase": {
+      "type": "object",
+      "required": ["name", "url", "sha256", "size_bytes"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "size_bytes": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "unityArtifact": {
+      "allOf": [{ "$ref": "#/$defs/artifactBase" }],
+      "properties": {
+        "version": true, "released_at": true, "contract_revision": true, "notes_url": true,
+        "unity_versions": {
+          "description": "Unity editor versions the release was verified on, for example 6000.3.",
+          "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" }
+        },
+        "files": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "allOf": [{ "$ref": "#/$defs/fileBase" }],
+            "properties": { "name": true, "url": true, "sha256": true, "size_bytes": true, "kind": { "const": "unitypackage" } },
+            "required": ["kind"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["unity_versions"],
+      "additionalProperties": false
+    },
+    "unrealArtifact": {
+      "allOf": [{ "$ref": "#/$defs/artifactBase" }],
+      "properties": {
+        "version": true, "released_at": true, "contract_revision": true, "notes_url": true,
+        "files": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "allOf": [{ "$ref": "#/$defs/fileBase" }],
+            "properties": {
+              "name": true, "url": true, "sha256": true, "size_bytes": true,
+              "kind": { "enum": ["prebuilt", "source"] },
+              "engine": { "type": "string", "pattern": "^5\\.[0-9]+$" },
+              "os": { "const": "windows" },
+              "arch": { "const": "x64" }
+            },
+            "required": ["kind"],
+            "if": { "properties": { "kind": { "const": "prebuilt" } } },
+            "then": { "required": ["engine", "os", "arch"] },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "directorArtifact": {
+      "allOf": [{ "$ref": "#/$defs/artifactBase" }],
+      "properties": {
+        "version": true, "released_at": true, "contract_revision": true, "notes_url": true,
+        "files": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "allOf": [{ "$ref": "#/$defs/fileBase" }],
+            "properties": {
+              "name": true, "url": true, "sha256": true, "size_bytes": true,
+              "kind": { "const": "executable" },
+              "os": { "enum": ["windows", "macos", "linux"] },
+              "arch": { "enum": ["x64", "arm64"] }
+            },
+            "required": ["kind", "os", "arch"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
