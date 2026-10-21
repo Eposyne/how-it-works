@@ -64,16 +64,17 @@ flowchart LR
 
 ### Signing in and limits
 
+- **Plan.** Using the hosted Director with an Eposyne account, whether signed in or with an
+  API key, needs the Pro plan or higher.
 - **Account.** Developers sign in with their Eposyne account through the browser, from the
   engine plugin or from Director's web console.
 - **API keys.** For everything else, such as a game server, a build script, or an engine
-  without a plugin, an account holder creates a Director API key on their Eposyne account,
-  on every plan. A key is shown once and can be revoked at any time. It belongs on a server
+  without a plugin, an account holder creates a Director API key on their Eposyne account.
+  A key is shown once and can be revoked at any time. It belongs on a server
   or a developer machine, never in a game build players download or in a web page.
 - **Studio keys.** Studios can also use a studio key issued by Eposyne.
 - **Paying for decisions.** Each hosted decision is paid from the account's usage credits,
-  which you buy on your Eposyne account. A new account can earn a welcome credit to try
-  Director. A monthly limit on the credits caps what the account spends, and a decision is
+  which you buy on your Eposyne account. A monthly limit on the credits caps what the account spends, and a decision is
   refused, never run unpaid, when the balance runs low.
 - **Isolation.** Each account or studio has its own data and its own limits.
 - **Models.** You pick from the models the hosted Director offers. Bringing your own model,
