@@ -26,10 +26,10 @@ flowchart LR
 | Step | What goes in | What Architect does | What you do |
 |---|---|---|---|
 | **1. Sources** | Plain text, Markdown, Word, PDF, spreadsheets and more; pages from Confluence, Notion, and Google Drive (Pro and up) | Splits each document into pieces that are ready for extraction | Choose what to bring in |
-| **2. Schema** | Your sources | AI proposes the entity types for your world and the fields each type has | Edit the proposal, or start from a blank schema |
+| **2. Schema** | Your sources | AI writes a schema of entity types and their fields from your sources | Edit the schema afterwards, or start from a blank one |
 | **3. Entities** | Schema and sources | AI extraction runs in the background and creates the entities directly | Review and edit any entity, or discard a whole extraction run at once |
-| **4. Relationships** | Entities | Turns mentions of one entity in another into links, without AI; AI can propose more relationships | Edit the links on a graph |
-| **5. Story** | Your world | AI drafts arcs and the actions inside them | Accept or reject each draft; build branches with variables and conditions on a node canvas |
+| **4. Relationships** | Entities | Turns links you add to entity descriptions into relationships, without AI; AI can generate or propose more relationships | Edit the links on a graph |
+| **5. Story** | Your world | AI drafts arcs and the actions inside them | Accept or reject each draft; arrange arcs, beats, actions, and branch points on a node canvas |
 | **6. Export** | Your world | Produces the output you choose and checks it first | Choose the destination and what to include |
 
 ### Where AI helps, and where you decide
