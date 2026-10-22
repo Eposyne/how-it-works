@@ -95,6 +95,9 @@ flowchart LR
   through the browser. A coding agent can run your pipeline with it, can preview what an AI
   step will cost before running it, and never gets more authority than the person who set
   it up.
+- **Gameplay.** Define the state your story tracks and the gameplay actions it invokes,
+  before or after the game implements them, and use them in story actions. A preview runs
+  a story action under assumptions you set, without the game.
 - **Your account.** Your Architect account is your Eposyne account. The engine plugins and
   Director sign in with it.
 
@@ -102,10 +105,10 @@ flowchart LR
 
 These features are built or being built, and are not usable in the web app yet.
 
-- **Gameplay.** Give characters, places, and items actions your engine can run; see the
-  state and actions your game actually exposes; bind a ruleset and fill stat blocks from
-  the rules you play by; import a rulebook. Tools to prepare and run live sessions from
-  your world belong to the same family.
+- **Running gameplay in the game.** Gameplay actions defined in Architect that the game
+  build runs, from the story and from Director.
+- **Rulesets and live sessions.** Bind a ruleset and fill stat blocks from the rules you
+  play by; import a rulebook; prepare and run live sessions from your world.
 - **World Builder.** Start a world from an idea instead of from documents.
 - **Comments and review.** Comments anchored anywhere in the world, and a review step for
   drafts before they become canon.
