@@ -58,8 +58,10 @@ Both plugins, for development and testing:
 - **Declare game state** in your code, with separate access for Architect and Director, and
   manage the declarations in the plugin's editor window.
 - **Ask Director** for decisions against the hosted beta. The plugin sends only what Director
-  may read, checks every proposed change again, applies only what is allowed, and keeps a
-  record of what it applied and what it refused.
+  may read, with each value in the type your game holds. It first checks that Director speaks
+  the same version of the interface, and it never falls back to another format, another
+  Director, or another provider. It checks every proposed change again, applies only what is
+  allowed, and keeps a record of what it applied and what it refused.
 
 ## In development
 

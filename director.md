@@ -38,9 +38,11 @@ What the game sends has three parts:
 
 - **The situation**, in plain language: what is happening and what is being decided.
 - **The current state**: the values that matter right now, such as a character's mood, a
-  faction's standing, or a line of dialogue.
-- **What may change**: which of those values Director may change, each with its allowed
-  values or its range. A value can also be marked as free text, for dialogue.
+  faction's standing, or a line of dialogue. Each value keeps its type: text stays text, a
+  number stays a number, and true or false stays true or false.
+- **What may change**: which of those values Director may change, each with exactly one
+  rule: its allowed values, its range, or a length limit for text. A value can also be marked
+  as free text, for dialogue.
 
 Two layers protect the game:
 
@@ -54,7 +56,7 @@ Director proposes; it never executes anything in your game.
 
 ```mermaid
 flowchart LR
-    proposal["AI proposal"] --> rules{"Allowed to change?<br/>Within its limits?"}
+    proposal["AI proposal<br/>(must be one valid JSON object)"] --> rules{"Allowed to change?<br/>Within its limits?"}
     rules -- "no" --> dropped["Dropped"]
     rules -- "yes" --> returned["Returned to the game,<br/>with a reason"]
     returned --> engine{"Engine check"}
@@ -85,8 +87,14 @@ flowchart LR
 - **Unity and Unreal** connect through the Eposyne plugins (see
   [the engine plugins](engine-plugins.md)).
 - **Anything else that can send an HTTPS request**, such as another engine, a game server,
-  or a script, calls Director's HTTP interface directly with an API key. There is no Godot
+  or a script, calls Director's HTTP interface directly with an API key. Director speaks
+  JSON only: a request in any other format is refused. There is no Godot
   plugin. Browsers cannot call it directly: a web game calls it from its own backend.
+
+Every client, plugin or not, first checks once that the Director it talks to speaks the same
+version of the interface. If it does not, the client stops and says so. It never retries in
+an older format, on an older route, with another AI provider, or against the hosted
+Director after a local one failed.
 
 The interface itself (requests, responses, errors, and limits) is documented in the
 [Director developer documentation](https://director.eposyne.com/docs/).
@@ -100,7 +108,8 @@ decision and read the result in plain words.
 ### What Director does not do
 
 - It does not create new values: it only changes the values the game declared as changeable.
-- It does not check types beyond allowed values and ranges.
+- It does not convert values. A number sent as text, or text sent as a number, does not
+  match a rule meant for the other type, and the request is refused.
 - It does not read Architect worlds. Architect content reaches the game through the plugin's
   import, and the game sends Director what a decision needs.
 - Without the memory module it does not remember on its own: the game passes what happened
